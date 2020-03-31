@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <title>NASA API</title>
+    <link rel="stylesheet" href="es8_styles.css">
+    <style media="screen">
+      .col {
+        background-color: #F9F9F9;
+        border: solid 1px #EEE;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Astroids</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="weekly.html">WEEKLY SUMMARY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">GALLERY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.nasa.gov/" target="_blank">NASA</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col p-3 mb-2 bg-dark text-white" align="center">
+          <h1>NASA - Asteroids information</h1>
+          <p><img src="meteor.svg" class="meteor_svg"></p>
+          <p>This web page is dedicated to showcasing astroids that are on their way to crash with planet Earth.</p>
+          <h3>Be sure to check out the weekly summary and gallery pages above!</h3>
+        </div>
+      </div>
+
+
+      <div class="row">
+
+        <div class="col p-6 mb-2 bg-info text-white" align="center">
+            <p>Quick facts:</p>
+            <p>In the next 7 days, there are <span id="num"></span> asteroids on their way!</p>
+            <p> Today, there are <span id="num_today"></span> asteroids that are very close.</p>
+            <p>The largest astroid today has <span id="largest"></span> H (absolute magnitude)!</p>
+        </div>
+
+        <div class="col p-6 mb-2 bg-danger text-white" align="center">
+          <p>Actual danger:</p>
+          <form class="form-group">
+            <label class="my-1 mr-2" for="days">Choose a day in the next week from the menu: </label>
+            <select class="selectpicker" id="days">
+              <option selected value="0">Choose a day</option>
+              <option value="0">Today</option>
+              <option value="1">Tomorrow</option>
+              <option value="2">in 2 days</option>
+              <option value="3">in 3 days</option>
+              <option value="4">in 4 days</option>
+              <option value="5">in 5 days</option>
+              <option value="6">in 6 days</option>
+              <option value="7">in a week</option>
+            </select>
+
+            <button onclick="update_info()" type="button" class="btn btn-primary my-1">Submit</button>
+          </form>
+          <p>These are the astroids that NASA marked as potentially hazardous asteroids:</p>
+          <p><span id="actually_dangerous"></span></p>
+          <p><span id="selected_date"></span></p>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col" align="center">
+          <div align="center" id="pic_of_day">
+            <p class="shake">Picture of the day: <span id="space_image_title"></span></p>
+            <img src="">
+            <figcaption id="pic_explaination" align="left"></figcaption>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+    <script src="index.js"></script>
+
+  </body>
+</html>

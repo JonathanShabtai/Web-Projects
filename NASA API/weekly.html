@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <title>NASA API</title>
+    <link rel="stylesheet" href="es8_styles.css">
+    <style media="screen">
+      .col {
+        background-color: #F9F9F9;
+        border: solid 1px #EEE;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Astroids</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="weekly.html">WEEKLY SUMMARY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">GALLERY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.nasa.gov/" target="_blank">NASA</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col p-3 mb-2 bg-dark text-white" align="center">
+          <h1>WEEKLY SUMMARY</h1>
+          <p class="font-weight-normal">Let's see what this week has in store for us.</p>
+          <p class="font-weight-normal">Today's date: <span id="date"></span></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col bg-warning text-dark" align="center">
+          <form class="form-group">
+            <label class="my-1 mr-2" for="days">Choose the metric you want to review: </label>
+            <select class="selectpicker" id="metric">
+              <option selected value="nothing">Choose below</option>
+              <option value="miss">Miss Distance</option>
+              <option value="diameter">Maximum estimated diameter</option>
+              <option value="speed">Speed</option>
+            </select>
+
+            <button onclick="update_info()" type="button" class="btn btn-primary my-1">Submit</button>
+          </form>
+          <p>These are the top 10 in the category you picked in the next week:</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <table class="table table-striped table-dark" align="center">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col" id="parameter">Your pick!</th>
+              </tr>
+            </thead>
+            <tbody id="result">
+              <tr>
+                <th scope="row">Your pick</th>
+                <td>Will Show</td>
+                <td>Here</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+    <script src="weekly.js"></script>
+
+  </body>
+</html>

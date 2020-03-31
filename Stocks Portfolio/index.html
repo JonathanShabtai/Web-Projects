@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <title>Stocks application</title>
+    <link rel="stylesheet" href="es8_styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
+    <style media="screen">
+      .col {
+        background-color: #F9F9F9;
+        border: solid 1px #EEE;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Stocks application</a>
+    </nav>
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col p-3 mb-2 bg-dark text-white" align="center">
+          <h1 id="headline">Stocks Portfolio Manager</h1>
+          <p class="d-none d-md-block">Buy stocks, sell stocks, see how your portfolio is doing.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form name="myForm" action="" method="post" id="main_form">
+            <label for="stock_symbol">Stock symbol: </label><input type="text" name="stock_symbol">
+            <button type="button" onclick="searchStock()">Request information</button>
+            <br>
+            <label for="num_shares">Number of shares: </label><input type="text" name="num_shares">
+            <br class="mobile-break">
+            <button type="button" onclick="addOrRemoveStock(1)">Buy</button>
+            <button type="button" onclick="addOrRemoveStock(-1)">Sell</button>
+            <button type="button" onclick="clearStorage_btn()">Clear Portfolio</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p class="mobile-hide">This table shows up-to-date information regarding the stock symbol you enter.</p>
+          <table class="table table-bordered" align="center">
+            <thead>
+              <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col" class="mobile-hide">Company</th>
+                <th scope="col">Lastest Price</th>
+                <th scope="col" class="mobile-hide">Exchange</th>
+                <th scope="col">Change</th>
+              </tr>
+            </thead>
+            <tbody id="info">
+              <td class="mobile-hide">Your</td>
+              <td class="mobile-hide">Requested</td>
+              <td class="mobile-hide">Information</td>
+              <td class="mobile-hide">Shows</td>
+              <td class="mobile-hide">Here</td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" id="firstcol">
+          <h3 class="p-3 mb-2 bg-info text-white" align="center">Last Visit Portfolio</h3>
+          <table id="portfolio_table_old" class="table table-striped table-dark" align="center">
+            <thead>
+              <tr>
+                <th class="th-sm" scope="col">Symbol</th>
+                <th class="th-sm" scope="col">Stock Value</th>
+                <th class="th-sm" scope="col">Number of Shares</th>
+                <th class="th-sm" scope="col">Total Value</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio_tbl">
+            </tbody>
+          </table>
+          <h4 align="center"><span id="portfolio_last_visit"></span></h4>
+        </div>
+        <div class="col" id="secondcol">
+          <h3 class="p-3 mb-2 bg-info text-white" align="center">Current Portfolio</h3>
+          <table id="portfolio_table" class="table table-striped table-dark" align="center">
+            <thead>
+              <tr>
+                <th class="th-sm" scope="col">Symbol</th>
+                <th class="th-sm" scope="col">Stock Value</th>
+                <th class="th-sm" scope="col">Number of Shares</th>
+                <th class="th-sm" scope="col">Total Value</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio_tbl">
+            </tbody>
+          </table>
+          <h4 align="center"><span id="portfolio"></span></h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" align="center">
+          <h4 class="p-3 mb-2 bg-info text-white"><span id="changes">Your total value has changed by: N/A</span></h4>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+    <script src="index.js"></script>
+
+  </body>
+</html>

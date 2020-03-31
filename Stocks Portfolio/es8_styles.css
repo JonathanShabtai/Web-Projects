@@ -1,0 +1,42 @@
+col {
+  padding: 0px;
+  flex-basis: 25%;
+  margin: 1em 20px 6px;
+}
+
+/*use special breaks only on mobile view*/
+.mobile-break {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .row {
+    align-content: center;
+  }
+
+  #headline {
+    font-size: 20px;
+  }
+
+  #main_form{
+    align-content: center;
+    text-align: center;
+  }
+
+/*use special breaks only on mobile view*/
+  .mobile-break {
+    display: inline;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  /*switch columns order on mobile*/
+  #firstcol {
+        order: 2;
+    }
+  #secondcol {
+      order: 1;
+  }
+}

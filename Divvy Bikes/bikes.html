@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Homework #3: Bike Stations</title>
+    <style>
+      .fave {
+        padding-right: 1em;
+        cursor: pointer;
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+
+      <div class="row">
+        <div class="col">
+          <h1>Divvy Stations</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mr-4">
+
+          <p>Area:
+            <select id="area_choice">
+              <option value="all">All</option>
+              <option value="loop">Loop</option>
+              <option value="uchicago">University of Chicago</option>
+              <option value="north">North Side</option>
+            </select>
+          </p>
+
+          <div class="row">
+            <div class="col">
+              <table id="stations" class="table table-striped border">
+                <thead>
+                  <tr><th colspan="2">Station Name</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="loop"><td><span class="fave">&#9825;</span></td><td>Buckingham Fountain</td></tr>
+                  <tr class="loop"><td><span class="fave">&#9825;</span></td><td>Shedd Aquarium</td></tr>
+                  <tr class="loop"><td><span class="fave">&#9825;</span></td><td>Burnham Harbor</td></tr>
+                  <tr class="loop"><td><span class="fave">&#9825;</span></td><td>Michigan Ave & Washington St</td>
+                  <tr class="uchicago"><td><span class="fave">&#9825;</span></td><td>Harper Ave & 59th St</td></tr>
+                  <tr class="uchicago"><td><span class="fave">&#9825;</span></td><td>Museum of Science and Industry</td></tr>
+                  <tr class="uchicago"><td><span class="fave">&#9825;</span></td><td>Ellis Ave & 60th St</td></tr>
+                  <tr class="north"><td><span class="fave">&#9825;</span></td><td>Clark St & Armitage Ave</td></tr>
+                  <tr class="north"><td><span class="fave">&#9825;</span></td><td>Broadway and Argyle St</td></tr>
+                  <tr class="north"><td><span class="fave">&#9825;</span></td><td>Sheffield Ave & Waveland Ave</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col">
+              <table id="favorites" class="table table-bordered">
+                <thead>
+                  <tr><th>My Favorite Stations</th> </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      // Part 1
+      // Have not edited the HTML above for this section
+      $('.fave').click(function() {
+        let station_picked = ($(this).closest('tr').find('td:eq(1)').text());
+        // Case of empty heart
+        if (($(this).text().charCodeAt(0)) == ("9825")) {
+          $(this).html("&#9829;");
+          let insert_to_fav = ("<tr><td>" + station_picked + "</td></tr>");
+          $('#favorites').append(insert_to_fav);
+        }
+
+        // Case of full heart
+        else {
+          $(this).html("&#9825;");
+          $("#favorites td").remove(":contains(" + station_picked + ")");
+        }
+      });
+
+      // Part 2
+      // function that takes a class name and returns a list of stations names under that class
+      function get_stations_list(specific_class) {
+        var stations_list = [];
+        $(specific_class).each(function(index) {
+          stations_list.push($(this).closest('tr').find('td:eq(1)').text());
+        });
+        return stations_list;
+      }
+
+      // Creating arrays for each area utilizing the function above
+      loop_stations_list = get_stations_list('.loop');
+      uchicago_stations_list = get_stations_list('.uchicago');
+      north_stations_list = get_stations_list('.north');
+
+      // const selectElement = document.querySelector('#area_choice');
+      // selectElement.addEventListener('change', (event) => {  // got this on MDN HTMLElement: change event page
+      // Ended up using the below:
+      $('#area_choice').change(function() {
+        if (event.target.value == 'all') {
+          $(".loop").show();
+          $(".uchicago").show();
+          $(".north").show();
+
+          $("#favorites td").show();
+        }
+
+        // loop is chosen
+        if (event.target.value == 'loop') {
+          $(".loop").show();
+          $(".uchicago").hide();
+          $(".north").hide();
+
+          $.each(loop_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").show();
+          });
+          $.each(uchicago_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+          $.each(north_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+        }
+
+        // uchicago is chosen
+        if (event.target.value == 'uchicago') {
+          $(".loop").hide();
+          $(".uchicago").show();
+          $(".north").hide();
+
+          $.each(loop_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+          $.each(uchicago_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").show();
+          });
+          $.each(north_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+        }
+
+        // north is chosen
+        if (event.target.value == 'north') {
+          $(".loop").hide();
+          $(".uchicago").hide();
+          $(".north").show();
+
+          $.each(loop_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+          $.each(uchicago_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").hide();
+          });
+          $.each(north_stations_list, function(index, value){
+            $("#favorites td:contains(" + value + ")").show();
+          });
+        }
+      });
+    </script>
+
+  </body>
+</html>
